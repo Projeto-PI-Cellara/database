@@ -39,7 +39,7 @@ CREATE TABLE sensor (
 CREATE TABLE captura_sensor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     irradiancia FLOAT NOT NULL,
-	geracao_ideal FLOAT NOT NULL,
+	potencia_estimada FLOAT NOT NULL,
 	dt_captura DATETIME DEFAULT CURRENT_TIMESTAMP,
 	fk_sensor INT NOT NULL,
 	CONSTRAINT cfk_sensor
