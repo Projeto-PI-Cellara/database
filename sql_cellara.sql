@@ -45,3 +45,24 @@ CREATE TABLE captura_sensor (
 	CONSTRAINT cfk_sensor
 		FOREIGN KEY (fk_sensor) REFERENCES sensor(id)
 );
+
+/*CREATE USER 'insert_cellara'@'%' IDENTIFIED BY 'urubu100';
+GRANT INSERT ON cellara.captura_sensor TO 'insert_cellara'@'%';
+SHOW GRANTS for 'insert_cellara'@'%';
+*/
+
+INSERT INTO empresa (cnpj, nome, codigo_ativacao) VALUES 
+('01928393837263', 'Carrefour', 'A1');
+
+INSERT INTO setor (nome, qtd_painel, fk_empresa) VALUES
+('A', 5, 1);
+
+INSERT INTO sensor (status_sensor, fk_setor) VALUES
+(1, 1);
+
+SELECT * FROM captura_sensor ORDER BY id DESC;
+
+SELECT User FROM mysql.user;
+
+GRANT INSERT ON cellara.captura_sensor TO 'insert_cellara'@'%';
+
