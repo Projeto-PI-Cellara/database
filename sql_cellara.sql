@@ -72,7 +72,24 @@ INSERT INTO sensor (status_sensor, fk_setor) VALUES
 (1, 8),
 (1, 9);
 
+SELECT * FROM captura_sensor ORDER BY id DESC;
 
+-- Selecionando últimas 20 capturas do sensor do setor 'A' da empresa 'SPTech Consulting'
+SELECT captura_sensor.id, 
+empresa.nome AS 'Empresa',
+setor.nome AS 'Setor', 
+CONCAT(captura_sensor.irradiancia, ' W/m²') AS 'Irradiância medida',
+DATE_FORMAT(captura_sensor.dt_captura, '%d/%m/%Y') AS 'Data da captura', 
+DATE_FORMAT(captura_sensor.dt_captura, '%H:%i:%s') AS 'Hora da captura'
+FROM captura_sensor
+	JOIN sensor 
+		ON captura_sensor.fk_sensor = sensor.id
+	JOIN setor 
+		ON sensor.fk_setor = setor.id
+	JOIN empresa 
+		ON setor.fk_empresa = empresa.id
+WHERE setor.id = 1
+ORDER BY captura_sensor.id DESC LIMIT 20;
 
 
 
