@@ -22,8 +22,7 @@ CREATE TABLE usuario (
 CREATE TABLE setor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL UNIQUE,
-	qtd_painel INT NOT NULL,
-	fk_empresa INT NOT NULL,
+		fk_empresa INT NOT NULL,
 	CONSTRAINT cfk_empresa_setor
 		FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
@@ -39,7 +38,6 @@ CREATE TABLE sensor (
 CREATE TABLE captura_sensor (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     irradiancia FLOAT NOT NULL,
-	potencia_estimada FLOAT NOT NULL,
 	dt_captura DATETIME DEFAULT CURRENT_TIMESTAMP,
 	fk_sensor INT NOT NULL,
 	CONSTRAINT cfk_sensor
