@@ -74,7 +74,8 @@ INSERT INTO sensor (status_sensor, fk_setor) VALUES
 
 SELECT * FROM captura_sensor ORDER BY id DESC;
 
--- Selecionando últimas 20 capturas do sensor do setor 'A' da empresa 'SPTech Consulting'
+/* Selecionando últimas 20 capturas do sensor do setor 'A' da empresa
+'SPTech Consulting' */
 SELECT captura_sensor.id, 
 empresa.nome AS 'Empresa',
 setor.nome AS 'Setor', 
@@ -90,6 +91,3 @@ FROM captura_sensor
 		ON setor.fk_empresa = empresa.id
 WHERE setor.id = 1
 ORDER BY captura_sensor.id DESC LIMIT 20;
-
-
-
