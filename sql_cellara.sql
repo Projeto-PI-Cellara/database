@@ -44,25 +44,23 @@ CREATE TABLE captura_sensor (
 		FOREIGN KEY (fk_sensor) REFERENCES sensor(id)
 );
 
-
 INSERT INTO empresa (cnpj, nome, codigo_ativacao) VALUES 
 ('01928393837263', 'SPTech Consulting', 'A1B2C3'),
 ('01829383928392', 'Avanade', 'A2B3C5'),
 ('01928393847557', 'Safra', 'B1F67K');
 
 INSERT INTO setor (nome, fk_empresa) VALUES
-('A', 1),
-('B', 1),
-('C', 1),
 ('A', 2),
 ('B', 2),
 ('C', 2),
 ('A', 3),
 ('B', 3),
-('C', 3);
+('C', 3),
+('A', 4),
+('B', 4),
+('C', 4);
 
 INSERT INTO sensor (status_sensor, fk_setor) VALUES
-(1, 1),
 (1, 2),
 (1, 3),
 (1, 4),
@@ -70,7 +68,8 @@ INSERT INTO sensor (status_sensor, fk_setor) VALUES
 (1, 6),
 (1, 7),
 (1, 8),
-(1, 9);
+(1, 9),
+(1, 10);
 
 SELECT * FROM captura_sensor ORDER BY id DESC;
 
