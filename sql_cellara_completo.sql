@@ -36,9 +36,9 @@ CREATE TABLE usuario (
 CREATE TABLE codigo_ativacao (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     ativo BOOLEAN NOT NULL DEFAULT TRUE,
-    texto CHAR(8) NOT NULL UNIQUE,
+    valor CHAR(16) NOT NULL UNIQUE,
     dthr_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    dthr_expiracao DATETIME NOT NULL,
+    duracao INT NOT NULL,
     dthr_exclusao DATETIME NULL,
     dthr_uso DATETIME NULL,
     fk_empresa INT NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE sensor (
 );
 
 CREATE TABLE captura (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
     dthr DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     valor_ldr FLOAT NOT NULL,
     irradiancia_estimada FLOAT NOT NULL,
@@ -93,9 +93,9 @@ INSERT INTO usuario (fk_empresa, fk_pessoa, email, senha) VALUES
     (2, 3, 'arthur.carvalho@photomais.com', 'arthur1234'),
     (2, 4, 'henrique.albuquerque', 'henrique1234');
     
-INSERT INTO codigo_ativacao (texto, dthr_expiracao, fk_empresa, fk_criador) VALUES
-	('ABCDEFGH', '2026-12-12 12:00:00', 1, 1),
-    ('12345678', '2026-12-12 12:00:00', 2, 3);
+INSERT INTO codigo_ativacao (valor, duracao, fk_empresa, fk_criador) VALUES
+	('ABCDEFGH', 600000, 1, 1),
+    ('12345678', 600000, 2, 3);
 
 INSERT INTO setor (nome, fk_empresa) VALUES
 	('A', 1),
