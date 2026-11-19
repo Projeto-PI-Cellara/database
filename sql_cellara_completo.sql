@@ -16,10 +16,7 @@ CREATE TABLE empresa (
 	cnpj CHAR(14) NOT NULL UNIQUE,
 	razao_social VARCHAR(100) NOT NULL,
     nome_fantasia VARCHAR(100) NOT NULL,
-    dthr_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fk_admin INT NOT NULL,
-    CONSTRAINT fk_empresa_admin
-		FOREIGN KEY (fk_admin) REFERENCES pessoa(id)
+    dthr_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE usuario (
@@ -28,6 +25,7 @@ CREATE TABLE usuario (
     ativo BOOLEAN NOT NULL DEFAULT TRUE,
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
+    cargo BOOLEAN NOT NULL,
 	FOREIGN KEY (fk_empresa) REFERENCES empresa(id),
     FOREIGN KEY (fk_pessoa) REFERENCES pessoa(id),
     PRIMARY KEY (fk_empresa, fk_pessoa)
@@ -83,15 +81,15 @@ INSERT INTO pessoa (nome, cpf) VALUES
     ('Arthur de Brito Carvalho', '12345678903'),
     ('Henrique Silva Albuquerque', '12345678904');
     
-INSERT INTO empresa (cnpj, razao_social, nome_fantasia, fk_admin) VALUES
-	('12345678901234', 'Luz do Sol Placas Solares Ltda.', 'Luz do Sol', 1),
-    ('12345678901235', 'Photomais Placas Solares Ltda.', 'Photomais', 3);
+INSERT INTO empresa (cnpj, razao_social, nome_fantasia) VALUES
+	('12345678901234', 'Luz do Sol Placas Solares Ltda.', 'Luz do Sol'),
+    ('12345678901235', 'Photomais Placas Solares Ltda.', 'Photomais');
     
-INSERT INTO usuario (fk_empresa, fk_pessoa, email, senha) VALUES
-	(1, 1, 'brayan.carvalho@luzdosol.com', 'brayan1234'),
-    (1, 2, 'gabriel.santos@luzdosol.com', 'gabriel1234'),
-    (2, 3, 'arthur.carvalho@photomais.com', 'arthur1234'),
-    (2, 4, 'henrique.albuquerque', 'henrique1234');
+INSERT INTO usuario (fk_empresa, fk_pessoa, email, senha, cargo) VALUES
+	(1, 1, 'brayan.carvalho@luzdosol.com', 'brayan1234', 1),
+    (1, 2, 'gabriel.santos@luzdosol.com', 'gabriel1234', 0),
+    (2, 3, 'arthur.carvalho@photomais.com', 'arthur1234', 1),
+    (2, 4, 'henrique.albuquerque', 'henrique1234', 0);
     
 INSERT INTO codigo_ativacao (valor, duracao, fk_empresa, fk_criador) VALUES
 	('ABCDEFGH', 600000, 1, 1),
